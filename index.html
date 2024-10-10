@@ -1,70 +1,54 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Clickable - Chuyển Đến Shopee</title>
+    <title>Video Redirect Example</title>
     <style>
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .overlay {
-            position: absolute;
+        /* Lớp phủ trong suốt để không thấy nút mua */
+        #overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
             cursor: pointer;
-            background: rgba(0, 0, 0, 0); /* Trong suốt */
-            transition: background 0.3s ease;
         }
 
-        .overlay:hover {
-            background: rgba(0, 0, 0, 0.1); /* Hiệu ứng khi hover, có thể điều chỉnh */
-        }
-
-        @media (max-width: 600px) {
-            /* Tùy chỉnh cho thiết bị di động nếu cần */
+        video {
+            width: 100%; /* Chiều rộng của video */
+            height: auto; /* Chiều cao tự động */
+            z-index: 0;
+            position: relative;
         }
     </style>
-    <!-- Thêm mã Google Analytics nếu cần -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'YOUR_TRACKING_ID');
-    </script>
 </head>
 <body>
-    <div class="video-container">
-        <video id="clickable-video" controls poster="thumbnail.jpg">
-            <source src="mmoshoppe/v14044g50000crp2r5fog65sp8k3npn0.MP4">
-            Trình duyệt của bạn không hỗ trợ thẻ video.
-        </video>
-        <div class="overlay"></div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.querySelector('.overlay');
-            const targetURL = 'https://s.shopee.vn/3flYkPTgED'; // Thay bằng URL Shopee của bạn
+<div id="overlay"></div>
+<video id="myVideo" controls>
+    <source src="mmoshoppe/v14044g50000crp2r5fog65sp8k3npn0.MP4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
-            overlay.addEventListener('click', () => {
-                window.open(targetURL, '_blank');
-            });
-        });
-    </script>
+<script>
+    // Khi người dùng nhấn vào overlay
+    document.getElementById("overlay").onclick = function() {
+        // Mở trang Shopee
+        window.open("https://s.shopee.vn/3flYkPTgED", "_blank"); // Mở trong tab mới
+    };
+
+    // Bắt sự kiện phát video
+    var video = document.getElementById("myVideo");
+    video.onplay = function() {
+        document.getElementById("overlay").style.display = "none"; // Ẩn overlay khi video phát
+    };
+    video.onpause = function() {
+        document.getElementById("overlay").style.display = "block"; // Hiện overlay khi video dừng
+    };
+</script>
+
 </body>
 </html>
