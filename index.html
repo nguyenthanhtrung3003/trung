@@ -37,7 +37,7 @@
     // Khi người dùng nhấn vào overlay
     document.getElementById("overlay").onclick = function() {
         // Mở trang Shopee
-        window.open("https://s.shopee.vn/3flYkPTgED", "_blank"); // Mở trong tab mới
+        window.open("https://s.shopee.vn/1qJug1BLBV", "_blank"); // Mở trong tab mới
     };
 
     // Bắt sự kiện phát video
@@ -47,6 +47,11 @@
     };
     video.onpause = function() {
         document.getElementById("overlay").style.display = "block"; // Hiện overlay khi video dừng
+    };
+
+    // Thêm sự kiện khi video kết thúc
+    video.onended = function() {
+        document.getElementById("overlay").style.display = "block"; // Hiện overlay khi video kết thúc
     };
 </script>
 
