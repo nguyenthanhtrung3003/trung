@@ -1,59 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Redirect Example</title>
-    <style>
-        /* Lớp phủ trong suốt để không thấy nút mua */
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0);
-            z-index: 1;
-            cursor: pointer;
-        }
-
-        video {
-            width: 100%; /* Chiều rộng của video */
-            height: auto; /* Chiều cao tự động */
-            z-index: 0;
-            position: relative;
-        }
-    </style>
+    <title>Video</title>
 </head>
 <body>
+    <video width="400" controls id="video">
+        <source src="mmoshoppe/v14044g50000crp2r5fog65sp8k3npn0.MP4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ video.
+    </video>
 
-<div id="overlay"></div>
-<video id="myVideo" controls>
-    <source src="mmoshoppe/v14044g50000crp2r5fog65sp8k3npn0.MP4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
-<script>
-    // Khi người dùng nhấn vào overlay
-    document.getElementById("overlay").onclick = function() {
-        // Mở trang Shopee
-        window.open("https://s.shopee.vn/1qJug1BLBV", "_blank"); // Mở trong tab mới
-    };
-
-    // Bắt sự kiện phát video
-    var video = document.getElementById("myVideo");
-    video.onplay = function() {
-        document.getElementById("overlay").style.display = "none"; // Ẩn overlay khi video phát
-    };
-    video.onpause = function() {
-        document.getElementById("overlay").style.display = "block"; // Hiện overlay khi video dừng
-    };
-
-    // Thêm sự kiện khi video kết thúc
-    video.onended = function() {
-        document.getElementById("overlay").style.display = "block"; // Hiện overlay khi video kết thúc
-    };
-</script>
-
+    <script>
+        document.getElementById('video').addEventListener('click', function() {
+            window.location.href = 'https://s.shopee.vn/AKIU8GPspf';  // URL đích
+        });
+    </script>
 </body>
 </html>
